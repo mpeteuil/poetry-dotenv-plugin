@@ -1,0 +1,31 @@
+[tool.poetry]
+name = "poetry-dotenv-plugin"
+version = "0.1.0a2"
+description = "A Poetry plugin to automatically load environment variables from .env files"
+authors = ["Michael Peteuil <michael.peteuil@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "poetry_dotenv_plugin"}]
+homepage = "https://github.com/mpeteuil/poetry-dotenv-plugin"
+repository = "https://github.com/mpeteuil/poetry-dotenv-plugin"
+keywords = ["poetry", "poetry-plugin", "plugin", "dotenv"]
+classifiers = [
+    "Topic :: Software Development",
+    "Topic :: System :: Systems Administration",
+    "Topic :: Utilities",
+]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+poetry = ">=1.2.0a1"
+python-dotenv = ">=0.10.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2.3"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.plugins."poetry.application.plugin"]
+poetry-dotenv-plugin = "poetry_dotenv_plugin.dotenv_plugin:DotenvPlugin"
