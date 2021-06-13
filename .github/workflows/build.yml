@@ -1,3 +1,6 @@
+# Heavily based on the Poetry main Github Actions workflow
+# https://github.com/python-poetry/poetry/blob/1.2.0a1/.github/workflows/main.yml
+
 name: "CI"
 on:
   push:
@@ -7,11 +10,6 @@ on:
   pull_request:
     branches:
       - '**'
-
-
-# 1. Run script that installs the versions of poetry-dotenv-plugin on this branch:
-#     Ex. poetry plugin add git+https://github.com/mpeteuil/poetry-plugin-dotenv.git#PR_BRANCH
-# 2.
 
 jobs:
   tests:
@@ -65,14 +63,6 @@ jobs:
       - name: Install poetry-dotenv-plugin
         shell: bash
         run: poetry plugin add poetry-dotenv-plugin
-
-      # - name: Setup .env test file
-      #   shell: bash
-      #   run: echo "export MY_ENV_VAR='Hello World'" > "$GITHUB_WORKSPACE/.env"
-
-      # - name: Run pytest
-      #   shell: bash
-      #   run: poetry run pytest -m system
 
       - name: Run system test
         shell: bash
