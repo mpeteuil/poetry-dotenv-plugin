@@ -70,6 +70,10 @@ jobs:
       #   shell: bash
       #   run: echo "export MY_ENV_VAR='Hello World'" > "$GITHUB_WORKSPACE/.env"
 
-      - name: Run pytest
+      # - name: Run pytest
+      #   shell: bash
+      #   run: poetry run pytest -m system
+
+      - name: Run system test
         shell: bash
-        run: poetry run pytest -m system
+        run: tests/test_system.sh
