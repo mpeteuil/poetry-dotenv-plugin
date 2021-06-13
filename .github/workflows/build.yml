@@ -6,7 +6,6 @@ on:
   push:
     branches:
       - main
-      - continuous-integration
   pull_request:
     branches:
       - '**'
