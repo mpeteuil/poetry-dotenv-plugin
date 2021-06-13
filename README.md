@@ -1,5 +1,7 @@
 # Poetry Dotenv Plugin
 
+[![CI](https://github.com/mpeteuil/poetry-dotenv-plugin/actions/workflows/build.yml/badge.svg)](https://github.com/mpeteuil/poetry-dotenv-plugin/actions/workflows/build.yml)
+
 A [Poetry](https://python-poetry.org/) plugin that automatically loads environment variables from `.env` files into the environment before poetry commands are run.
 
 Supports Python 3.6+
