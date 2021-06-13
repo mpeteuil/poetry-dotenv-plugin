@@ -64,6 +64,6 @@ jobs:
         shell: bash
         run: poetry plugin add "$GITHUB_WORKSPACE"
 
-      - name: Run system test
+      - name: Run system tests
         shell: bash
         run: tests/test_system.sh
