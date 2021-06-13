@@ -27,5 +27,10 @@ pytest = "^6.2.3"
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
+[tool.pytest.ini_options]
+markers = [
+  "system: marks tests as system-level tests that may be slow as they interact through the entire system, not isolated components."
+]
+
 [tool.poetry.plugins."poetry.application.plugin"]
 poetry-dotenv-plugin = "poetry_dotenv_plugin.dotenv_plugin:DotenvPlugin"

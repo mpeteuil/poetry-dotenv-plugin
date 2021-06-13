@@ -66,10 +66,10 @@ jobs:
         shell: bash
         run: poetry plugin add poetry-dotenv-plugin
 
-      - name: Setup .env test file
-        shell: bash
-        run: echo "export MY_ENV_VAR='Hello World'" > "$GITHUB_WORKSPACE/.env"
+      # - name: Setup .env test file
+      #   shell: bash
+      #   run: echo "export MY_ENV_VAR='Hello World'" > "$GITHUB_WORKSPACE/.env"
 
       - name: Run pytest
         shell: bash
-        run: poetry run pytest -m integration
+        run: poetry run pytest -m system
