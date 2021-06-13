@@ -7,18 +7,19 @@ function create_dotenv_file() {
 
 function delete_dotenv_file() {
   # Tear down .env file since we no longer need it
-  rm .env
+  rm -f .env
 }
 
 function test_end_to_end_system_with_default_dotenv_file() {
+  # Setup
   local expected
   expected='foo'
-
   create_dotenv_file
 
   local output
   output=$(poetry run python -c "import os; print(os.environ['MY_ENV_VAR'])")
 
+  # Cleanup
   delete_dotenv_file
 
   if [ "$expected" = "$output" ]; then
@@ -30,11 +31,11 @@ function test_end_to_end_system_with_default_dotenv_file() {
 }
 
 function test_end_to_end_system_with_dotenv_location_override() {
+  # Setup
   local expected
   expected='bar'
   local new_dotenv_path
-  new_dotenv_path="$PWD/nested/path"
-
+  new_dotenv_path="$PWD/tests/tmp"
   create_dotenv_file
 
   # Override the file that was just created
@@ -43,6 +44,8 @@ function test_end_to_end_system_with_dotenv_location_override() {
   local output
   output=$(export POETRY_DOTENV_LOCATION="$new_dotenv_path/.env" && poetry run python -c "import os; print(os.environ['MY_ENV_VAR'])")
 
+  # Cleanup
+  rm -rf "$new_dotenv_path"
   delete_dotenv_file
 
   if [ "$expected" = "$output" ]; then
@@ -54,14 +57,15 @@ function test_end_to_end_system_with_dotenv_location_override() {
 }
 
 function test_end_to_end_system_without_loading_dotenv_file() {
+  # Setup
   local expected
   expected='Nonexistent Variable'
-
   create_dotenv_file
 
   local output
   output=$(export POETRY_DONT_LOAD_ENV=true && poetry run python -c "import os; print(os.environ.get('MY_ENV_VAR', '$expected'))")
 
+  # Cleanup
   delete_dotenv_file
 
   if [ "$expected" = "$output" ]; then
