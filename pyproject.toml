@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "poetry-dotenv-plugin"
-version = "0.1.0a2"
+version = "0.1.0"
 description = "A Poetry plugin to automatically load environment variables from .env files"
 authors = ["Michael Peteuil <michael.peteuil@gmail.com>"]
 license = "MIT"
@@ -16,7 +16,7 @@ classifiers = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.6"
+python = ">=3.7,<4"
 poetry = ">=1.2.0a1"
 python-dotenv = ">=0.10.0"
 
