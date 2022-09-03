@@ -57,7 +57,7 @@ jobs:
         run: poetry install --no-root
 
       - name: Install poetry-dotenv-plugin
-        run: poetry plugin add "$GITHUB_WORKSPACE"
+        run: poetry self add "$GITHUB_WORKSPACE"
 
       - name: Run system tests
         run: tests/test_system.sh

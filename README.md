@@ -23,7 +23,7 @@ Initial implementation based on the event handler application plugin example in 
 ## Install
 
 ```sh
-poetry plugin add poetry-dotenv-plugin
+poetry self add poetry-dotenv-plugin
 ```
 
 ### Coming from Pipenv
