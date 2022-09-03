@@ -34,7 +34,7 @@ jobs:
         run: echo ::set-output name=version::$(python -c "import sys; print('-'.join(str(v) for v in sys.version_info))")
 
       - name: Install poetry
-        run: curl -sL https://raw.githubusercontent.com/python-poetry/poetry/1.2.0a1/install-poetry.py | python - -y --preview
+        run: curl -sL curl -sL https://install.python-poetry.org | python - -y
 
       - name: Update PATH
         run: echo "$HOME/.local/bin" >> $GITHUB_PATH
