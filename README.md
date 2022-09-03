@@ -4,7 +4,7 @@
 
 A [Poetry](https://python-poetry.org/) plugin that automatically loads environment variables from `.env` files into the environment before poetry commands are run.
 
-Supports Python 3.6+
+Supports Python 3.7+
 
 ```sh
 $ cat .env

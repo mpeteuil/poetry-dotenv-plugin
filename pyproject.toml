@@ -16,7 +16,7 @@ classifiers = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.6"
+python = ">=3.7,<4"
 poetry = ">=1.2.0a1"
 python-dotenv = ">=0.10.0"
 
