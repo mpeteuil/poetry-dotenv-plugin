@@ -34,3 +34,9 @@ Pipenv env var | Poetry env var
 -------------- | ----------------------
 PIPENV_DOTENV_LOCATION | POETRY_DOTENV_LOCATION
 PIPENV_DONT_LOAD_ENV | POETRY_DONT_LOAD_ENV
+
+### Overriding existing environment variables
+
+By default, this plugin will override existing environment variables. This is because this plugin was built to make onboarding for users coming from `pipenv` as seamless as possible. If you want to prevent existing environment variables from being overridden, you can set the `POETRY_DOTENV_DONT_OVERRIDE` environment variable to `true`.[^1]
+
+[^1]: See [#16](https://github.com/mpeteuil/poetry-dotenv-plugin/pull/16) for background.
