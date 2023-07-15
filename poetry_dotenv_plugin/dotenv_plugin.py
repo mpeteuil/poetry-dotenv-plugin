@@ -29,4 +29,9 @@ class DotenvPlugin(ApplicationPlugin):
             io.write_line("<debug>Loading environment variables.</debug>")
 
         path = POETRY_DOTENV_LOCATION or dotenv.find_dotenv(usecwd=True)
-        dotenv.load_dotenv(dotenv_path=path, override=True)
+        POETRY_DOTENV_DONT_OVERRIDE = os.environ.get("POETRY_DOTENV_DONT_OVERRIDE", "")
+        DOTENV_OVERRIDE = not POETRY_DOTENV_DONT_OVERRIDE.lower() in (
+            "true",
+            "1",
+        )
+        dotenv.load_dotenv(dotenv_path=path, override=DOTENV_OVERRIDE)

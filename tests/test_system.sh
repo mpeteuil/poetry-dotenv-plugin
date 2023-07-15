@@ -56,6 +56,46 @@ function test_end_to_end_system_with_dotenv_location_override() {
   fi
 }
 
+function test_end_to_end_system_with_default_env_overrides() {
+  # Setup
+  local expected
+  expected='foo'
+  create_dotenv_file
+
+  local output
+  output=$(export MY_ENV_VAR='bar' && poetry run python -c "import os; print(os.environ['MY_ENV_VAR'])")
+
+  # Cleanup
+  delete_dotenv_file
+
+  if [ "$expected" = "$output" ]; then
+    printf "test_end_to_end_system_with_default_env_overrides: PASSED\n"
+  else
+    printf "Expected '$expected', but got '%s'.\n" "$output"
+    exit 1
+  fi
+}
+
+function test_end_to_end_system_without_env_overrides() {
+  # Setup
+  local expected
+  expected='bar'
+  create_dotenv_file
+
+  local output
+  output=$(export MY_ENV_VAR='bar' POETRY_DOTENV_DONT_OVERRIDE=true && poetry run python -c "import os; print(os.environ['MY_ENV_VAR'])")
+
+  # Cleanup
+  delete_dotenv_file
+
+  if [ "$expected" = "$output" ]; then
+    printf "test_end_to_end_system_without_env_overrides: PASSED\n"
+  else
+    printf "Expected '$expected', but got '%s'.\n" "$output"
+    exit 1
+  fi
+}
+
 function test_end_to_end_system_without_loading_dotenv_file() {
   # Setup
   local expected
@@ -78,4 +118,6 @@ function test_end_to_end_system_without_loading_dotenv_file() {
 
 test_end_to_end_system_with_default_dotenv_file
 test_end_to_end_system_with_dotenv_location_override
+test_end_to_end_system_with_default_env_overrides
+test_end_to_end_system_without_env_overrides
 test_end_to_end_system_without_loading_dotenv_file
