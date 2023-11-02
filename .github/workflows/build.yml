@@ -17,21 +17,18 @@ jobs:
     strategy:
       matrix:
         os: [Ubuntu, MacOS]
-        python-version: ["3.7", "3.8", "3.9", "3.10", "3.11", "3.12-dev"]
+        python-version: ["3.7", "3.8", "3.9", "3.10", "3.11", "3.12"]
     defaults:
       run:
         shell: bash
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
+        id: setup-python
         with:
           python-version: ${{ matrix.python-version }}
-
-      - name: Get full Python version
-        id: full-python-version
-        run: echo ::set-output name=version::$(python -c "import sys; print('-'.join(str(v) for v in sys.version_info))")
 
       - name: Install poetry
         run: |
@@ -48,18 +45,18 @@ jobs:
         run: poetry config virtualenvs.in-project true
 
       - name: Set up cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         id: cache
         with:
           path: .venv
-          key: venv-${{ runner.os }}-${{ steps.full-python-version.outputs.version }}-${{ hashFiles('**/poetry.lock') }}
+          key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
 
       - name: Ensure cache is healthy
         if: steps.cache.outputs.cache-hit == 'true'
         run: timeout 10s poetry run pip --version || rm -rf .venv
 
       - name: Install dependencies
-        run: poetry install --no-root
+        run: poetry install --sync --no-root
 
       - name: Install poetry-dotenv-plugin
         run: poetry self add "$GITHUB_WORKSPACE"
