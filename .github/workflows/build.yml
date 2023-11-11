@@ -56,7 +56,7 @@ jobs:
         run: timeout 10s poetry run pip --version || rm -rf .venv
 
       - name: Install dependencies
-        run: poetry install --sync --no-root
+        run: poetry install --no-root
 
       - name: Install poetry-dotenv-plugin
         run: poetry self add "$GITHUB_WORKSPACE"
