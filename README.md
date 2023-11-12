@@ -4,7 +4,7 @@
 
 A [Poetry](https://python-poetry.org/) plugin that automatically loads environment variables from `.env` files into the environment before poetry commands are run.
 
-Supports Python 3.7+
+Supports Python 3.7+[^1]
 
 ```sh
 $ cat .env
@@ -37,6 +37,7 @@ PIPENV_DONT_LOAD_ENV | POETRY_DONT_LOAD_ENV
 
 ### Overriding existing environment variables
 
-By default, this plugin will override existing environment variables. This is because this plugin was built to make onboarding for users coming from `pipenv` as seamless as possible. If you want to prevent existing environment variables from being overridden, you can set the `POETRY_DOTENV_DONT_OVERRIDE` environment variable to `true`.[^1]
+By default, this plugin will override existing environment variables. This is because this plugin was built to make onboarding for users coming from `pipenv` as seamless as possible. If you want to prevent existing environment variables from being overridden, you can set the `POETRY_DOTENV_DONT_OVERRIDE` environment variable to `true`.[^2]
 
-[^1]: See [#16](https://github.com/mpeteuil/poetry-dotenv-plugin/pull/16) for background.
+[^1]: Python 3.7 is supported only when using Poetry < [1.6.0](https://python-poetry.org/history/#160---2023-08-20), which [dropped support for Python 3.7](https://github.com/python-poetry/poetry/pull/7674).
+[^2]: See [#16](https://github.com/mpeteuil/poetry-dotenv-plugin/pull/16) for background.
