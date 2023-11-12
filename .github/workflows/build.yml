@@ -34,7 +34,12 @@ jobs:
         run: echo ::set-output name=version::$(python -c "import sys; print('-'.join(str(v) for v in sys.version_info))")
 
       - name: Install poetry
-        run: curl -sL curl -sL https://install.python-poetry.org | python - -y
+        run: |
+          if [[ "${{ matrix.python-version }}" == "3.7" ]]; then
+            curl -sSL https://install.python-poetry.org | python - --version 1.5.1 -y
+          else
+            curl -sSL https://install.python-poetry.org | python - -y
+          fi
 
       - name: Update PATH
         run: echo "$HOME/.local/bin" >> $GITHUB_PATH
