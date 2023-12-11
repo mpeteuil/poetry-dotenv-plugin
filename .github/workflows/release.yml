@@ -22,7 +22,7 @@ jobs:
           python-version: "3.11"
 
       - name: Install Poetry
-        run: curl -sL https://raw.githubusercontent.com/python-poetry/poetry/1.5.1/install-poetry.py | python - -y
+        run: curl -sSL https://install.python-poetry.org | python - -y
 
       - name: Update PATH
         run: echo "$HOME/.local/bin" >> $GITHUB_PATH
